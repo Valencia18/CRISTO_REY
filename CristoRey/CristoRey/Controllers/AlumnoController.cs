@@ -18,6 +18,8 @@ namespace CristoRey.Controllers
         // GET: Alumno
         public ActionResult Index()
         {
+            ViewBag.Title = "Mantenimiento de Alumnos";
+
             var aLUMNO = db.ALUMNO.Include(a => a.DISTRITO).Include(a => a.PADRE_FAMILIA);
             return View(aLUMNO.ToList());
         }
