@@ -143,5 +143,52 @@
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
 @Scripts.Render("~/bundles/jqueryval")
-a
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#txtBuscar").autocomplete({
+            source: '@Url.Action("getPadres", "PadreFamilia")'
+        });
+
+        $("#DEPARTAMENTO").change(function () {
+            $("#PROVINCIA").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getProvincias")',
+                dataType: 'json',
+                data: { id: $("#DEPARTAMENTO").val() },
+                success: function (provincias) {
+                    $("#PROVINCIA").append('<option value="' + '">Select</option>');
+                    $.each(provincias, function (i, provincias) {
+                        $("#PROVINCIA").append('<option value="' + provincias.Value + '">' +
+                        provincias.Text + '</option>');
+                    });
+                },
+            });
+
+
+            $("#DISTRITO").empty();
+            $("#DISTRITO").append('<option value="' + "" + '">Select</option>');
+        });
+
+        $("#PROVINCIA").change(function () {
+            $("#DISTRITO").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getDistritos")',
+                dataType: 'json',
+                data: { id: $("#PROVINCIA").val() },
+                success: function (distritos) {
+                    $("#DISTRITO").append('<option value="' + "" + '">Select</option>');
+                    $.each(distritos, function (i, distritos) {
+                        $("#DISTRITO").append('<option value="' + distritos.Value + '">' +
+                        distritos.Text + '</option>');
+                    });
+                },
+            });
+        });
+    });
+</script>
+
 }
