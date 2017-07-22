@@ -26,6 +26,8 @@ namespace CristoRey.Controllers
         [HttpPost]
         public ActionResult Index(string buscar)
         {
+            ViewBag.Title = "Mantenimiento de Alumnos";
+
             List<ALUMNO> alumnos;
             if (!String.IsNullOrEmpty(buscar))
             {
