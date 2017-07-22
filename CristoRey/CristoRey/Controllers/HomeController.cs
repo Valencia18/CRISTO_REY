@@ -10,6 +10,7 @@ namespace CristoRey.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Inicio = "UNIVERSIDAD NACIONAL JOSÉ FAUSTINO SANCHEZ CARRIÓN";
             return View();
         }
 
